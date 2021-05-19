@@ -1,15 +1,26 @@
 # This workflow will build a Java project with Maven
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+on: [push]
 
-name: Java CI with Maven
-
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+env:
+  WORKSPACE: "${{ github.workspace }}"
+  JOB_BASE_NAME: "${{ github.workflow }}"
+  
 
 jobs:
+  setup:
+    runs-on: [docker-ubuntu-latest]
+    name: Setup Stage
+    steps:
+	 -name: Set up JDK
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11.0.2 # semver
+     
+     - name: Display Information
+       run: echo "${{ github.repository }}"
+       run: echo "${{ github.ref }}"
+       
   build:
 
     runs-on: ubuntu-latest
@@ -29,11 +40,3 @@ jobs:
             ls -ltr
             pwd
     
-    - name: Build and Push Docker Image
-      uses: mr-smithers-excellent/docker-build-push@v4
-      with:
-        image: ankushpa/ankush_docker_workspace
-        tag: v1
-        registry: docker.io
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}    
