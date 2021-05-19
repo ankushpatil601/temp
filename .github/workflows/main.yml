@@ -36,6 +36,4 @@ jobs:
     - name: Push build to artifactory
       run: |
             pwd
-            cd target
             ls -ltr
-            pwd
