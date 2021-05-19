@@ -28,7 +28,10 @@ jobs:
       with:
         java-version: 1.8
     - name: Change dir
-      run: cd mavenapp
+      run: |
+            cd mavenapp
+            pwd
+            ls -ltr
     - name: Build with Maven
       run: mvn -B package --file pom.xml
     - name: Push build to artifactory
