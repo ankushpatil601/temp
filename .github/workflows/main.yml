@@ -16,9 +16,6 @@ jobs:
        uses: actions/setup-java@v1
        with:
         java-version: 11.0.2
-     
-     - name: Display Information
-     - run: echo "${{ github.repository }}"
        
   build:
 
