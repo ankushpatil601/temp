@@ -27,8 +27,10 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
+    - name: Change dir
+      run: cd mavenapp
     - name: Build with Maven
-      run: mvn -B package --file /mavenapp/pom.xml
+      run: mvn -B package --file pom.xml
     - name: Push build to artifactory
       run: |
             pwd
