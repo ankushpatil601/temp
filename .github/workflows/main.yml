@@ -18,8 +18,8 @@ jobs:
         java-version: 11.0.2
      
      - name: Display Information
-       run: echo "${{ github.repository }}"
-       run: echo "${{ github.ref }}"
+     - run: echo "${{ github.repository }}"
+     - run: echo "${{ github.ref }}"
        
   build:
 
