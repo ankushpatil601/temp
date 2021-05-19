@@ -33,6 +33,7 @@ jobs:
             pwd
             ls -ltr
             mvn -B package --file pom.xml
+            ls -ltr
     - name: Push build to artifactory
       run: |
             pwd
