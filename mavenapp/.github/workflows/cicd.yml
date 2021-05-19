@@ -12,10 +12,10 @@ jobs:
     runs-on: [docker-ubuntu-latest]
     name: Setup Stage
     steps:
-	 -name: Set up JDK
-      uses: actions/setup-java@v1
-      with:
-        java-version: 11.0.2 # semver
+     - name: Set up JDK
+       uses: actions/setup-java@v1
+       with:
+        java-version: 11.0.2
      
      - name: Display Information
        run: echo "${{ github.repository }}"
