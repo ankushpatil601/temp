@@ -19,7 +19,6 @@ jobs:
      
      - name: Display Information
      - run: echo "${{ github.repository }}"
-     - run: echo "${{ github.ref }}"
        
   build:
 
