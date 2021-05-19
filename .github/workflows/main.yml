@@ -37,4 +37,5 @@ jobs:
     - name: Push build to artifactory
       run: |
             pwd
+            cd mavenapp/target
             ls -ltr
