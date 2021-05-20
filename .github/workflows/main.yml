@@ -5,7 +5,7 @@ on: [push]
 env:
   WORKSPACE: "${{ github.workspace }}"
   JOB_BASE_NAME: "${{ github.workflow }}"
-  
+  SERVICE_NAME: mavenapp
   
 
 jobs:
@@ -49,7 +49,7 @@ jobs:
         
     - name: Build with Maven
       run: |
-            cd ${SERVICE_NAME}
+            cd ${env.SERVICE_NAME}
             pwd
             ls -ltr
             mvn -B package --file pom.xml
