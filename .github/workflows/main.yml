@@ -55,7 +55,7 @@ jobs:
             version=$(grep -oP '<version>(.*)</version>' pom.xml | head -1 | cut -d '>' -f 2 | cut -d '<' -f 1)
             echo "version:$version"
             echo "Creating maven build for $service..."
-            mvn -B package --file pom.xml
+            mvn clean package
             ls -ltr
     - name: Push build to artifactory
       run: |
