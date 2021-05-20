@@ -5,7 +5,7 @@ on: [push]
 env:
   WORKSPACE: "${{ github.workspace }}"
   JOB_BASE_NAME: "${{ github.workflow }}"
-  SERVICE_NAME: "mavenapp"
+  
   
 
 jobs:
