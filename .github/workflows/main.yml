@@ -52,7 +52,7 @@ jobs:
             cd ${SERVICE_NAME}
             pwd
             ls -ltr
-            version=$(grep -oP '<version>(.*)</version>' ${SERVICE_NAME}/pom.xml | head -1 | cut -d '>' -f 2 | cut -d '<' -f 1)
+            version=$(grep -oP '<version>(.*)</version>' pom.xml | head -1 | cut -d '>' -f 2 | cut -d '<' -f 1)
             echo "version:$version"
             echo "Creating maven build for $service..."
             mvn -B package --file pom.xml
