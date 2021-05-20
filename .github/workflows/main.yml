@@ -42,7 +42,7 @@ jobs:
             git log -1 | grep -i commit | awk '{print $2}' > new_commit
             cat new_commit
             
-            git diff HEAD~1..HEAD --name-only | awk -F'/' '{print $1}' | grep -vE "solarlint|jenkinsfile|gitignore|.metadata|zip|dataflow|cloud_sql_dumps|parent|groovy" | sort -u > ${JOB_BASE_NAME}_changed_files
+            git diff HEAD^.. --name-only | awk -F'/' '{print $1}' | grep -vE "solarlint|jenkinsfile|gitignore|.metadata|zip|dataflow|cloud_sql_dumps|parent|groovy" | sort -u > ${JOB_BASE_NAME}_changed_files
             cat ${JOB_BASE_NAME}_changed_files
         
     - name: Build with Maven
