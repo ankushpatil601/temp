@@ -44,8 +44,8 @@ jobs:
             
             git status
             
-            echo "runnig git log"
-            git log
+            echo "runnig git show"
+            git show -n 5
             
             git diff HEAD^.. --name-only | awk -F'/' '{print $1}' | grep -vE "solarlint|jenkinsfile|gitignore|.metadata|zip|dataflow|cloud_sql_dumps|parent|groovy" | sort -u > ${JOB_BASE_NAME}_changed_files
             cat ${JOB_BASE_NAME}_changed_files
