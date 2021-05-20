@@ -27,6 +27,16 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
+    
+    - name: Display Information
+      run: |
+            echo "PATH = ${PATH}"
+            echo "M2_HOME = ${M2_HOME}"
+            echo "${WORKSPACE}"
+            echo "${JOB_BASE_NAME}"
+            echo "${{ github.repository }}"
+            echo "${{ github.ref }}"
+        
     - name: Build with Maven
       run: |
             cd mavenapp
