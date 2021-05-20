@@ -49,7 +49,7 @@ jobs:
         
     - name: Build with Maven
       run: |
-            cd ${env.SERVICE_NAME}
+            cd ${SERVICE_NAME}
             pwd
             ls -ltr
             mvn -B package --file pom.xml
