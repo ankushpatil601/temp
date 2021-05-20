@@ -5,6 +5,7 @@ on: [push]
 env:
   WORKSPACE: "${{ github.workspace }}"
   JOB_BASE_NAME: "${{ github.workflow }}"
+  SERVICE_NAME: "mavenapp"
   
 
 jobs:
@@ -36,23 +37,19 @@ jobs:
             echo "Job base name = ${JOB_BASE_NAME}"
             echo "Git Repository = ${{ github.repository }}"
             echo "Github Ref = ${{ github.ref }}"
+            echo "Service Name = ${SERVICE_NAME}"
         
     - name: Verify changed projects
       run: |
             git log -1 | grep -i commit | awk '{print $2}' > new_commit
             cat new_commit
-            
-            git status
-            
-            echo "runnig git show"
-            git show -n 5
-            
+                
             git diff HEAD^.. --name-only | awk -F'/' '{print $1}' | grep -vE "solarlint|jenkinsfile|gitignore|.metadata|zip|dataflow|cloud_sql_dumps|parent|groovy" | sort -u > ${JOB_BASE_NAME}_changed_files
             cat ${JOB_BASE_NAME}_changed_files
         
     - name: Build with Maven
       run: |
-            cd mavenapp
+            cd ${SERVICE_NAME}
             pwd
             ls -ltr
             mvn -B package --file pom.xml
@@ -60,5 +57,5 @@ jobs:
     - name: Push build to artifactory
       run: |
             pwd
-            cd mavenapp/target
+            cd ${SERVICE_NAME}/target
             ls -ltr
