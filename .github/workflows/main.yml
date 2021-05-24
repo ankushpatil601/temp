@@ -61,6 +61,8 @@ jobs:
             echo "Creating maven build for $service..."
             mvn clean package
             ls -ltr
+      env:
+          version: $version
     - name: Push build to artifactory
       run: |
             pwd
