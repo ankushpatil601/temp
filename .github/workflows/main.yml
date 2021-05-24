@@ -57,8 +57,9 @@ jobs:
             cd ${SERVICE_NAME}
             pwd
             ls -ltr
-            VERSION=$(grep -oP '<version>(.*)</version>' pom.xml | head -1 | cut -d '>' -f 2 | cut -d '<' -f 1)
-            echo "version:$VERSION"
+            version=$(grep -oP '<version>(.*)</version>' pom.xml | head -1 | cut -d '>' -f 2 | cut -d '<' -f 1)
+            echo "VERSION=$version" >> $GITHUB_ENV
+            echo "version:$version"
             echo "Creating maven build for $service..."
             mvn clean package
             ls -ltr
@@ -68,5 +69,5 @@ jobs:
             pwd
             cd ${SERVICE_NAME}/target
             ls -ltr
-            mv *.jar maven_build_${VERSION}.jar
+            mv *.jar maven_build_${{ env.VERSION }}.jar
             ls -ltr
