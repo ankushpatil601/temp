@@ -41,7 +41,7 @@ jobs:
             echo "Git Repository = ${{ github.repository }}"
             echo "Github Ref = ${{ github.ref }}"
             echo "Service Name = ${SERVICE_NAME}"
-            echo "GitHub Run ID = ${GITHUB_ACTION}"
+      
         
     - name: Verify changed projects
       run: |
@@ -56,7 +56,7 @@ jobs:
     - name: Build with Maven
       run: |
             ls -ltr
-            service_count=$(cat $WORKSPACE/${JOB_BASE_NAME}_changed_files | wc -l)
+            service_count=$(cat services_to_build.txt | wc -l)
             echo $service_count
             cd ${SERVICE_NAME}
             pwd
