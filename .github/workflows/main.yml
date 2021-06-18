@@ -58,7 +58,7 @@ jobs:
             ls -ltr
             service_count=$(cat services_to_build.txt | wc -l)
             echo $service_count
-            
+            mkdir buld_artifacts
             if [ $service_count != "0" ];
             then
                                 
