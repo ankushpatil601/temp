@@ -5,7 +5,7 @@ on: [push]
 env:
   WORKSPACE: "${{ github.workspace }}"
   JOB_BASE_NAME: "${{ github.workflow }}"
-  SERVICE_NAME: mavenapp
+  SERVICE_NAME: ""
   VERSION: ""
   
 
@@ -40,7 +40,7 @@ jobs:
             echo "Job base name = ${JOB_BASE_NAME}"
             echo "Git Repository = ${{ github.repository }}"
             echo "Github Ref = ${{ github.ref }}"
-            echo "Service Name = ${SERVICE_NAME}"
+          
       
         
     - name: Verify changed projects
@@ -58,15 +58,17 @@ jobs:
             ls -ltr
             service_count=$(cat services_to_build.txt | wc -l)
             echo $service_count
-            cd ${SERVICE_NAME}
-            pwd
-            ls -ltr
-            version=$(grep -oP '<version>(.*)</version>' pom.xml | head -1 | cut -d '>' -f 2 | cut -d '<' -f 1)
-            echo "VERSION=$version" >> $GITHUB_ENV
-            echo "version:$version"
-            echo "Creating maven build for $service..."
-            mvn clean package
-            ls -ltr
+            
+            if [ $service_count != "0" ]
+            then
+                for SERVICE_NAME in $(cat services_to_build.txt); do
+                
+                    echo ${SERVICE_NAME}
+                
+                done
+                
+            fi
+            
    
     - name: Push build to artifactory
       run: |
