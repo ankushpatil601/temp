@@ -61,12 +61,8 @@ jobs:
             
             if [ $service_count != "0" ];
             then
-                for SERVICE_NAME in $(cat services_to_build.txt); do
-                
-                    echo ${SERVICE_NAME}
-                
-                done
-                
+                echo "Inside if"
+   
             fi
             
    
