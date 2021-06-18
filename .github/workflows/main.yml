@@ -44,8 +44,7 @@ jobs:
         
     - name: Verify changed projects
       run: |
-             git diff HEAD^ HEAD --name-only | awk -F'/' '{print $1}' | grep -vE "solarlint|jenkinsfile|gitignore|.metadata|zip|dataflow|cloud_sql_dumps|parent|groovy" | sort -u > changed_files
-             cat changed_files                       
+             git diff HEAD^ HEAD --name-only                       
                    
         
     - name: Build with Maven
