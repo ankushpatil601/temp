@@ -58,7 +58,7 @@ jobs:
             ls -ltr
             service_count=$(cat services_to_build.txt | wc -l)
             echo $service_count
-            mkdir buld_artifacts
+            mkdir build_artifacts
             if [ $service_count != "0" ];
             then
                                 
@@ -74,7 +74,7 @@ jobs:
                   ls -ltr
                   cd target
                   mv *.jar maven_build_${{ env.VERSION }}.jar
-                  mv *.jar ${WORKSPACE}/buld_artifacts/maven_build_${{ env.VERSION }}.jar
+                  mv *.jar ${WORKSPACE}/build_artifacts/maven_build_${{ env.VERSION }}.jar
                   ls -ltr
                   cd ${WORKSPACE}
                   ls -ltr
