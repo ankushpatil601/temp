@@ -50,7 +50,7 @@ jobs:
              git diff HEAD^ HEAD --name-only | awk -F'/' '{print $1}' | grep -vE "solarlint|jenkinsfile|gitignore|.metadata|zip|dataflow|cloud_sql_dumps|parent|groovy" > changed_files.txt
               
              echo "Services to Build: "
-             cat changed_files
+             cat changed_files.txt
                    
         
     - name: Build with Maven
