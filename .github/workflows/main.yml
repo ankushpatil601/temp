@@ -59,7 +59,7 @@ jobs:
             service_count=$(cat services_to_build.txt | wc -l)
             echo $service_count
             
-            if [ $service_count != "0" ]
+            if [ $service_count != "0" ];
             then
                 for SERVICE_NAME in $(cat services_to_build.txt); do
                 
