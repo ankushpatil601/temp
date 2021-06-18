@@ -83,6 +83,6 @@ jobs:
             
     - name: Artifactory Upload
       run: |
-            cd build_artifacts
+            cd ${WORKSPACE}/build_artifacts
             ls -ltr
             
