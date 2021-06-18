@@ -50,7 +50,6 @@ jobs:
              git diff HEAD^ HEAD --name-only | awk -F'/' '{print $1}' | grep -vE "solarlint|jenkinsfile|gitignore|.metadata|zip|dataflow|cloud_sql_dumps|parent|groovy" > services_to_build.txt
               
              echo "Services to Build: "
-             echo "additional_service" >> services_to_build.txt
              cat services_to_build.txt
                    
         
@@ -62,11 +61,17 @@ jobs:
             
             if [ $service_count != "0" ];
             then
-                echo "Inside if"
-                
+                                
                 for SERVICE_NAME in $(cat services_to_build.txt); do
-                  echo "inside for"
-                  echo ${SERVICE_NAME}
+                  cd ${SERVICE_NAME}
+                  pwd
+                  ls -ltr
+                  version=$(grep -oP '<version>(.*)</version>' pom.xml | head -1 | cut -d '>' -f 2 | cut -d '<' -f 1)
+                  echo "VERSION=$version" >> $GITHUB_ENV
+                  echo "version:$version"
+                  echo "Creating maven build for $service..."
+                  mvn clean package
+                  ls -ltr
                 done
    
             fi
