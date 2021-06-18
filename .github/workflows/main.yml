@@ -80,3 +80,9 @@ jobs:
                   ls -ltr
                 done
             fi
+            
+    - name: Artifactory Upload
+      run: |
+            cd build_artifacts
+            ls -ltr
+            
