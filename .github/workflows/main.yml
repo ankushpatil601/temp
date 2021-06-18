@@ -47,7 +47,7 @@ jobs:
       run: |
              git log -1 | grep -i commit | awk '{print $2}'
 
-             git diff HEAD^ HEAD --name-only | awk -F'/' '{print $1}' | grep -vE "solarlint|.github|jenkinsfile|gitignore|.metadata|zip|dataflow|cloud_sql_dumps|parent|groovy" > services_to_build.txt
+             git diff HEAD^ HEAD --name-only | awk -F'/' '{print $1}' | grep -vE "solarlint|.github|jenkinsfile|gitignore|.metadata|zip|dataflow|cloud_sql_dumps|parent|groovy" | sort -u > services_to_build.txt
               
              echo "Services to Build: "
              cat services_to_build.txt
@@ -73,7 +73,7 @@ jobs:
                   mvn clean package
                   ls -ltr
                   cd target
-                  mv *.jar maven_build_${SERVICE_NAME}_${{ env.VERSION }}.jar
+                  mv *.jar maven_build_${SERVICE_NAME}_${version}.jar
                   mv *.jar ${WORKSPACE}/build_artifacts
                   ls -ltr
                   cd ${WORKSPACE}
