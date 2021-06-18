@@ -46,11 +46,11 @@ jobs:
     - name: Verify changed projects
       run: |
              git log -1 | grep -i commit | awk '{print $2}'
-             git diff HEAD^ HEAD --name-only
-             
-             echo "SECOND COMMAND --------------------------------------------------------------"
-             git diff HEAD^ HEAD --name-only | awk -F'/' '{print $1}' | grep -vE "solarlint|jenkinsfile|gitignore|.metadata|zip|dataflow|cloud_sql_dumps|parent|groovy"
-             
+
+             git diff HEAD^ HEAD --name-only | awk -F'/' '{print $1}' | grep -vE "solarlint|jenkinsfile|gitignore|.metadata|zip|dataflow|cloud_sql_dumps|parent|groovy" > changed_files
+              
+             echo "Services to Build: "
+             cat changed_files
                    
         
     - name: Build with Maven
