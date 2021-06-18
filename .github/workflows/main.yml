@@ -41,10 +41,14 @@ jobs:
             echo "Git Repository = ${{ github.repository }}"
             echo "Github Ref = ${{ github.ref }}"
             echo "Service Name = ${SERVICE_NAME}"
+            echo "GitHub Run ID = ${GITHUB_RUN_ID}"
         
     - name: Verify changed projects
       run: |
-             git diff HEAD^ HEAD --name-only                       
+             git log -1 | grep -i commit | awk '{print $2}'
+             git diff HEAD^ HEAD       
+             
+             git diff @~..@
                    
         
     - name: Build with Maven
