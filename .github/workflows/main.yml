@@ -47,14 +47,17 @@ jobs:
       run: |
              git log -1 | grep -i commit | awk '{print $2}'
 
-             git diff HEAD^ HEAD --name-only | awk -F'/' '{print $1}' | grep -vE "solarlint|jenkinsfile|gitignore|.metadata|zip|dataflow|cloud_sql_dumps|parent|groovy" > changed_files.txt
+             git diff HEAD^ HEAD --name-only | awk -F'/' '{print $1}' | grep -vE "solarlint|jenkinsfile|gitignore|.metadata|zip|dataflow|cloud_sql_dumps|parent|groovy" > services_to_build.txt
               
              echo "Services to Build: "
-             cat changed_files.txt
+             cat services_to_build.txt
                    
         
     - name: Build with Maven
       run: |
+            ls -ltr
+            service_count=$(cat $WORKSPACE/${JOB_BASE_NAME}_changed_files | wc -l)
+            echo $service_count
             cd ${SERVICE_NAME}
             pwd
             ls -ltr
