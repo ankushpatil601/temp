@@ -50,6 +50,7 @@ jobs:
              git diff HEAD^ HEAD --name-only | awk -F'/' '{print $1}' | grep -vE "solarlint|jenkinsfile|gitignore|.metadata|zip|dataflow|cloud_sql_dumps|parent|groovy" > services_to_build.txt
               
              echo "Services to Build: "
+             echo "additional_service" >> services_to_build.txt
              cat services_to_build.txt
                    
         
@@ -63,9 +64,9 @@ jobs:
             then
                 echo "Inside if"
                 
-                for i in $(cat services_to_build.txt); do
+                for SERVICE_NAME in $(cat services_to_build.txt); do
                   echo "inside for"
-                  echo $i
+                  echo ${SERVICE_NAME}
                 done
    
             fi
