@@ -73,8 +73,8 @@ jobs:
                   mvn clean package
                   ls -ltr
                   cd target
-                  mv *.jar maven_build_${{ env.VERSION }}.jar
-                  mv *.jar ${WORKSPACE}/build_artifacts/maven_build_${{ env.VERSION }}.jar
+                  mv *.jar maven_build_${SERVICE_NAME}_${{ env.VERSION }}.jar
+                  mv *.jar ${WORKSPACE}/build_artifacts
                   ls -ltr
                   cd ${WORKSPACE}
                   ls -ltr
