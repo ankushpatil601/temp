@@ -41,7 +41,7 @@ jobs:
             echo "Git Repository = ${{ github.repository }}"
             echo "Github Ref = ${{ github.ref }}"
             echo "Service Name = ${SERVICE_NAME}"
-            echo "GitHub Run ID = ${GITHUB_JOB}"
+            echo "GitHub Run ID = ${GITHUB_ACTION}"
         
     - name: Verify changed projects
       run: |
@@ -49,7 +49,7 @@ jobs:
              git diff HEAD^ HEAD --name-only
              
              echo "SECOND COMMAND --------------------------------------------------------------"
-             git diff HEAD^ HEAD --name-only | awk -F'/' '{print $1}' 
+             git diff HEAD^ HEAD --name-only | awk -F'/' '{print $1}' | grep -vE "solarlint|jenkinsfile|gitignore|.metadata|zip|dataflow|cloud_sql_dumps|parent|groovy"
              
                    
         
